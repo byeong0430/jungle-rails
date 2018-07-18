@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:create, :show]
 
+  # organise groups of controllers under a namespace
+  # find controllers in app/controllers/admin directory
   namespace :admin do
     root to: 'dashboard#show'
     resources :products, except: [:edit, :update, :show]
