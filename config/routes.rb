@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :products, only: %i[index show] # %i[] => array of symbols
   resources :categories, only: [:show]
 
+  # action: show. for put (action verb), execute `add_item` action. for delete (action verb), eecute `remove_item`
   resource :cart, only: [:show] do
     put    :add_item
     delete :remove_item
