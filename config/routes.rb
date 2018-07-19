@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  # INITIAL ROOT
+  # Resources: products, categories, cart and orders
   root to: 'products#index'
-  # %i[] => array of symbols
-  resources :products, only: %i[index show]
+
+  resources :products, only: %i[index show] # %i[] => array of symbols
   resources :categories, only: [:show]
 
   resource :cart, only: [:show] do
@@ -12,16 +14,19 @@ Rails.application.routes.draw do
   end
 
   resources :orders, only: %i[create show]
+  # INITIAL ROOT - END
 
-  # organise groups of controllers under a namespace. you can find controllers in app/controllers/admin directory
+  # ADMIN
+  # There are multiple controllers for products and categories. In order to avoid name clash, use namespace!
   namespace :admin do
-    # root directory of /admin. show is a function defined in dashboard_controllers
+    # root directory of /admin & action = show
     root to: 'dashboard#show'
     # resources are objects that admin has access to.
     # for example. 'products' resource is represented by 'Product' Model, which can be found in 'products' table
     resources :products, except: %i[edit update show]
     resources :categories, only: %i[index new create]
   end
+  # ADMIN - END
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
