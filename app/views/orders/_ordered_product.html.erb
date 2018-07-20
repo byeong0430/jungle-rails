@@ -1,8 +1,8 @@
-<!-- convert the line price to float and divide it by 100 -->
-<% @line_price = ordered_product.total_price_cents.to_f / 100 %>
 <!-- get each product id and use it to get the product detail -->
 <% @this_product_id = ordered_product.product_id %>
 <% @product_detail = Product.find(@this_product_id) %>
+<!-- convert the line price to float and divide it by 100 -->
+<% @line_price = ordered_product.total_price_cents.to_f / 100 %>
 
 <tr>
   <td><%= image_tag @product_detail.image.tiny %></td>

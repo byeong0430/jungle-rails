@@ -1,0 +1,14 @@
+Receipt
+------------------------------------------------------------
+<% @grand_total = 0 %>
+<% @ordered_products.each_with_index do |product, index| %>
+<% @line_price = product.total_price_cents.to_f / 100 %>
+<% @product_detail = Product.find(product.product_id) %>
+Product #<%= index + 1 %>
+<%= @product_detail.name %> (CAD <%= @line_price %>)
+Description
+- <%= @product_detail.description %>
+------------------------------------------------------------
+<% @grand_total += @line_price %>
+<% end %>
+Total Price: CAD <%= @grand_total %>

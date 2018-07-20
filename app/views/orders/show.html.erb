@@ -8,6 +8,7 @@
 
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
+    <p>A receipt has been sent to <%= @order.email %></p>
     <table class='table table-bordered'>
       <thead>
         <tr>
@@ -20,7 +21,7 @@
       <tbody>
         <% @grand_total = 0 %>
         <!-- join => `order.line_items` returns a list of line_items with the corresponding order id -->
-        <% @order.line_items.each do |ordered_product| %>
+        <% @ordered_products.each do |ordered_product| %>
         <!-- use partial called _ordered_product.html.erb and pass ordered_product object to it -->
           <%= render partial: 'ordered_product', object: ordered_product  %>
         <% end %>
