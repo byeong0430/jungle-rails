@@ -1,7 +1,11 @@
 class OrdersController < ApplicationController
 
   def show
+    # what we need:
+    # product image, name, and description => products.id, products.image, .name, .description
+    # ordered product quantities and line item totals => line_items.product_id, line_items.quantity, .total_price_cents
     @order = Order.find(params[:id])
+    @order_lists = Product.where('line_items.order_id = ?', params[:id]).joins('INNER JOIN line_items ON products.id = line_items.product_id').select('products.*, line_items.*')
   end
 
   def create
