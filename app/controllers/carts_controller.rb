@@ -1,6 +1,8 @@
 class CartsController < ApplicationController
 
   def show
+    # check the cart size
+    @cart_size = cart.size
   end
 
   def add_item
