@@ -2,6 +2,11 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @ordered_products = @order.line_items
+
+    # execute send_receipt function in user_mailer.rb
+    # preview: http://localhost:3000/rails/mailers/user_mailer/send_receipt
+    UserMailer.send_receipt(@order, @ordered_products)
   end
 
   def create
