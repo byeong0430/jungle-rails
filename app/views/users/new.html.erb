@@ -1,0 +1,44 @@
+<section class='sign-up-form'>
+  <header>
+    <h1>Please sign up</h1>
+  </header>
+  <!-- :sign_up represents PATH (href) -->
+  <%= form_for(@user, url: users_path) do |form| %>
+    <!-- error message -->
+    <% if form.object.errors.any? %>
+      <div class='alert alert-danger'>
+        <strong>The following errors prevented saving:</strong>
+        <ul>
+          <% form.object.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class='form-group'>
+      <label for='first_name'>First Name</label>
+      <%= form.text_field :first_name, class: 'form-control', name: 'first_name' %>
+    </div>
+    <div class='form-group'>
+      <label for='last_name'>Last Name</label>
+      <%= form.text_field :last_name, class: 'form-control', name: 'last_name' %>
+    </div>
+    <div class='form-group'>
+      <label for='email'>E-mail</label>
+      <%= form.text_field :email, class: 'form-control', name: 'email' %>
+    </div>
+    <div class='form-group'>
+      <label for='password'>Password</label>
+      <!-- use password_field for password -->
+      <%= form.password_field :password, class: 'form-control', name: 'password' %>
+    </div>
+    <div class='form-group'>
+      <label for='password-confirmation'>Confirm Password</label>
+      <%= form.password_field :password_confirmation, class: 'form-control', name: 'password_confirmation'%>
+    </div>
+    <div class='form-group'>
+      <%= form.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</section>
