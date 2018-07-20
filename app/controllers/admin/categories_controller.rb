@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Admin::CategoriesController < ApplicationController
+  http_basic_authenticate_with name: ENV['USERNAME'], password: ENV['PASSWORD']
+
   def index
     # get all categories from categories table
     @categories = Category.order(id: :desc).all
