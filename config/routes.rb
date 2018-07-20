@@ -4,21 +4,24 @@ Rails.application.routes.draw do
   # INITIAL ROOT
   # Resources: products, categories, cart and orders
   root to: 'products#index'
+  # INITIAL ROOT - END
 
   resources :products, only: %i[index show] # %i[] => array of symbols
   resources :categories, only: [:show]
 
-  # action: show. for put (action verb), execute `add_item` action. for delete (action verb), eecute `remove_item`
+  # `put` HTTP verb is available by add_item(). `delete` is available by remove_item()
+  # these functions are available for cart (nesting)
+  # resources should never be nested more than 1 level deep.
   resource :cart, only: [:show] do
     put    :add_item
     delete :remove_item
   end
 
   resources :orders, only: %i[create show]
-  # INITIAL ROOT - END
 
   # ADMIN
-  # There are multiple controllers for products and categories. In order to avoid name clash, use namespace!
+  # There are multiple controllers for products and categories.
+  # In order to avoid name clash, use namespace!
   namespace :admin do
     # root directory of /admin & action = show
     root to: 'dashboard#show'
