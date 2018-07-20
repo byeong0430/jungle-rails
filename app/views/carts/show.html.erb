@@ -1,16 +1,19 @@
 <section class="cart-show">
-
-  <header class="page-header">
-    <h1>My Cart</h1>
-  </header>
-
   <% if @cart_size.zero? %>
+    <header class="page-header">
+      <h1>Empty Cart :"(</h1>
+    </header>
+
   <!-- cart is empty. print out a message and a button link back to root -->
     <div class='alert alert-warning' role='alert'>
       Your cart is empty! Please select at least 1 item (or more ;))
     </div>
     <%= link_to 'Back', :root, class: 'btn btn-primary' %>
   <% else %>
+    <header class="page-header">
+      <h1>My Cart</h1>
+    </header>
+
     <div class="panel panel-default items">
       <table class="table table-bordered">
         <thead>
