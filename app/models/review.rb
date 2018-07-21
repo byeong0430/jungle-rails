@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Review < ActiveRecord::Base
   # association
   belongs_to :user
@@ -10,6 +12,6 @@ class Review < ActiveRecord::Base
   validates :product_id, :user_id, :rating, numericality: {
     only_integer: true
   }
-  # check if description is NOT empty
-  validates :description, length: {minimum: 1}
+  # check if rating is between 1 and 5
+  validates_inclusion_of :rating, in: 1..5
 end
