@@ -1,0 +1,27 @@
+<!-- form_for <instance var name>, <URI Pattern> (find it in `rake routes`) -->
+<%= form_for @review, url:{controller:'reviews', action:'create', product_id:@product[:id]} do |form| %>
+  <!-- FORM ERROR -->
+  <% if form.object.errors.any? %>
+  <div class='alert alert-danger'>
+    <strong>The following errors prevented saving:</strong>
+    <ul>
+    <% form.object.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <!-- FORM ERROR -->
+  <div class='form-group'>
+    <%= form.label :description, 'Please write your review' %>
+    <%= form.submit 'Submit', class: 'btn btn-sm btn-primary' %>
+  </div>
+  <div class='form-group'>
+    <%= form.label :rating, "Rating:" %>
+    <%= form.select :rating, options_for_select([5, 4, 3, 2, 1]), class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <!-- form.text_area <field name for the instance var>(in your table aka model) -->
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
+<% end %>
