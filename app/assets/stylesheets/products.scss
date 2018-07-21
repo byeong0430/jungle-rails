@@ -70,4 +70,16 @@ main section.products-show {
       max-width: 100%;
     }
   }
+  span.user-info{
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  span.rating{
+    i{
+      color: rgb(255, 196, 0);
+    }
+  }
+  main.description{
+    margin-bottom: 1em;
+  }
 }
