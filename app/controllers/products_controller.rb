@@ -6,6 +6,9 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find params[:id]
+    # create an instance class of reviews for the given product id
+    # this variable is available in views/products/show.html.erb
+    @reviews = Review.where('product_id = ?', params[:id])
   end
 
 end
