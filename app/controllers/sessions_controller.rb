@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
     if(@user && @user.authenticate(params[:password]))
       # save user id in cookie session
       session[:user_id] = @user.id
+      session[:expires_at] = Time.current + 24.hours
       redirect_to :root
     else
       # login failed. send user back to login
@@ -23,5 +24,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    reset_session
+    redirect_to :root
   end
 end
