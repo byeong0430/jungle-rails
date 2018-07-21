@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   root to: 'products#index'
   # INITIAL ROOT - END
 
-  resources :products, only: %i[index show] # %i[] => array of symbols
+  resources :products, only: %i[index show] do
+    resources :reviews, only: [:create]
+  end
+
   resources :categories, only: [:show]
 
   # `put` HTTP verb is available by add_item(). `delete` is available by remove_item()
