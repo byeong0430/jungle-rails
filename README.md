@@ -3,8 +3,8 @@
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
 
 # Final Product
-![order_receipt]()
-![product_with_review]
+![order_receipt](https://github.com/byeong0430/jungle-rails/blob/master/docs/order_receipt.png)
+![product_with_review](https://github.com/byeong0430/jungle-rails/blob/master/docs/product_with_review.png)
 
 ## Setup
 
