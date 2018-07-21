@@ -1,0 +1,20 @@
+<!-- add user name (use user_id), description, and rating -->
+<header>
+  <span class='user-info'>
+    <% @user = User.find(review[:user_id])%>
+    <%= @user[:first_name].to_s + ' ' + @user[:last_name].to_s %>
+  </span>
+  <span class='rating'>
+    <% @empty_star_len = 5 - review.rating %>
+    <% review.rating.times do |i| %>
+      <i class="fas fa-star"></i>
+    <% end %>
+    <% @empty_star_len.times do |i| %>
+      <i class="far fa-star"></i>
+    <% end %>
+  </span>
+</header>
+
+<main class='description'>
+  <%= review.description %>
+</main>
