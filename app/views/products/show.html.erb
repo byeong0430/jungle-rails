@@ -36,12 +36,20 @@
   </article>
   <hr>
   <article class='reviews'>
-    <h3>Customer Reviews</h3>
-    <div>
-      <% @reviews.each do |review| %>
-        <%= render partial:'review', object:review %>
-      <% end %>
+  <h3>Customer Reviews</h3>
+  <!-- LOGIN ERROR MESSAGE -->
+  <% if params[:err_code] %>
+    <div class='alert alert-warning' role='alert'>
+      Please log in first to write a review.
     </div>
+  <% end %>
+  <!-- LOGIN ERROR MESSAGE - END -->
+  <%= render partial:'write_review', object:@product %>
+  <div>
+    <% @reviews.each do |review| %>
+      <%= render partial:'review', object:review %>
+    <% end %>
+  </div>
   </article>
 
 </section>
