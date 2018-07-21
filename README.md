@@ -2,9 +2,9 @@
 
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
 
-# Final Product
-![order_receipt](https://github.com/byeong0430/jungle-rails/blob/master/docs/order_receipt.png)
-![product_with_review](https://github.com/byeong0430/jungle-rails/blob/master/docs/product_with_review.png)
+## Final Product
+!["Order Receipt"](https://github.com/byeong0430/jungle-rails/blob/master/docs/order_receipt.png?raw=true)
+!["Product With Review"](https://github.com/byeong0430/jungle-rails/blob/master/docs/product_with_review.png?raw=true)
 
 ## Setup
 
