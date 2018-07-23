@@ -3,15 +3,18 @@ require 'rails_helper'
 RSpec.describe Product, type: :model do
   describe 'Validations' do
     # validation tests/examples here
-    it 'should not be valid without a valid name field' do
-      @product = Product.create
-
-      expect(@product.errors.full_messages).to include("Name can't be blank")
+    context 'given an empty name field' do
+      it 'should not be valid' do
+        @product = Product.create
+        expect(@product.errors.full_messages).to include("Name can't be blank")
+      end
     end
-    it "should not have 'Name can't be blank' in the error array " do
-      @product = Product.create(name: 'name')
 
-      expect(@product.errors.full_messages).to_not include("Name can't be blank")
+    context 'given a valid name field' do
+      it "should not have 'Name can't be blank' in the error array " do
+        @product = Product.create(name: 'name')
+        expect(@product.errors.full_messages).to_not include("Name can't be blank")
+      end
     end
 
     it 'should not be valid without a valid price field' do
@@ -46,6 +49,6 @@ RSpec.describe Product, type: :model do
 
       expect(@product.errors.full_messages).to_not include("CATEGORY can't be blank")
     end
-    
+
   end
 end
