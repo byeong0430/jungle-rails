@@ -11,14 +11,14 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(params[:email])
 
     # email exists in table and password's been authenticated
-    if(@user && @user.authenticate(params[:password]))
+    if user = User.authenticate_with_credentials(params[:email], params[:password])
       # save user id in cookie session
-      session[:user_id] = @user.id
+      session[:user_id] = user.id
       session[:expires_at] = Time.current + 24.hours
       redirect_to :root
     else
       # login failed. send user back to login
-      redirect_to [:new, :session]
+      redirect_to [:new, :session], notice: 'Your email or password is incorrect!'
     end
 
   end
