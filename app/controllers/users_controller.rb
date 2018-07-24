@@ -15,7 +15,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to [:root]
     else
-      redirect_to %i[sign_up root]
+      # redirect with a flash message
+      redirect_to [:new, :user], notice: @user.errors.full_messages
     end
   end
 
