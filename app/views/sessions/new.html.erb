@@ -5,14 +5,9 @@
     <!-- :sign_up represents PATH (href) -->
     <%= form_for(@user, url: sessions_path) do |form| %>
       <!-- error message -->
-      <% if form.object.errors.any? %>
+      <% if flash[:notice] %>
         <div class='alert alert-danger'>
-          <strong>The following errors prevented saving:</strong>
-          <ul>
-            <% form.object.errors.full_messages.each do |error| %>
-            <li><%= error %></li>
-            <% end %>
-          </ul>
+          <%= flash[:notice] %>
         </div>
       <% end %>
 

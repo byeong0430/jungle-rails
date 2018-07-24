@@ -4,13 +4,12 @@
   </header>
   <!-- :sign_up represents PATH (href) -->
   <%= form_for(@user, url: users_path) do |form| %>
-    <!-- error message -->
-    <% if form.object.errors.any? %>
-      <div class='alert alert-danger'>
+      <% if flash[:notice] %>
+      <div class='alert alert-danger' role='alert'>
         <strong>The following errors prevented saving:</strong>
         <ul>
-          <% form.object.errors.full_messages.each do |error| %>
-          <li><%= error %></li>
+        <% flash.notice.each do |error| %>
+            <li><%= error %></li>
           <% end %>
         </ul>
       </div>
