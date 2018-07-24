@@ -7,4 +7,27 @@ class User < ActiveRecord::Base
 
   # association
   has_many :reviews
+
+  # validation
+  validates_uniqueness_of :email, case_sensitive:false
+  validates :email, :first_name, :last_name, presence: true
+  validates_length_of :password, minimum: 5
+
+  def self.authenticate_with_credentials(email, password)
+    # find the input email in users table
+    @user = User.find_by_email(email)
+
+    # check if the input email exists AND the user can be authenticated with the input password
+    if @user && @user.authenticate(password)
+      @user
+    else
+      nil
+    end
+  end
+
+  # callback before creation
+  before_create do
+    self.email = self.email.strip
+  end
+
 end
