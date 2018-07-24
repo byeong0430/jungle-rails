@@ -8,10 +8,11 @@ class SessionsController < ApplicationController
 
   def create
     # check if email exists in users table
-    @user = User.find_by_email(params[:email])
+    # @user = User.find_by_email(params[:email])
+    @user = User.where('lower(email) like ?', params[:email].downcase)[0]
 
     # email exists in table and password's been authenticated
-    if user = User.authenticate_with_credentials(params[:email], params[:password])
+    if user = User.authenticate_with_credentials(@user[:email], params[:password])
       # save user id in cookie session
       session[:user_id] = user.id
       session[:expires_at] = Time.current + 24.hours

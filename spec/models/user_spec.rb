@@ -60,6 +60,27 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'log-in' do
+    before :each do
+      @user_cred = {
+        email:'test@test.com',
+        password:'12345'
+      }
+      @user = User.where('lower(email) like ?', @user_cred[:email].downcase)[0]
+      user = User.authenticate_with_credentials(@user[:email], @user_cred[:password])
+    end
+
+    context 'given a correct email with incorrect lower- & upper-cases' do
+      it 'should authenticate the user credentials' do
+        @user_cred[:email] = 'TeSt@teSt.com'
+        @user = User.where('lower(email) like ?', @user_cred[:email].downcase)[0]
+        user = User.authenticate_with_credentials(@user[:email], @user_cred[:password])
+
+        expect(user).to_not be nil
+      end
+    end
+  end
+
   describe '.authenticate_with_credentials' do
     context 'given an email that does not exist in users table' do
       it 'should return nil' do
@@ -73,6 +94,5 @@ RSpec.describe User, type: :model do
         expect(@user).to be_nil
       end
     end
-
   end
 end
